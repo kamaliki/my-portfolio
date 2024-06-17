@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     siteName: "Clive Kamaliki",
     images: [
       {
-        url: "https://kamaliki.vercel.app/images/kamaliki.png",
+        url: "https://kamaliki.vercel.app/kamaliki.png",
         width: 800,
         height: 600,
         alt: "Clive Kamaliki",
