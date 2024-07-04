@@ -18,8 +18,9 @@ export function Experience() {
                         visible={true}
                         key={index}
                         date={experience.date}
-                        iconStyle={{ background: '#000000', color: '#fff', textAlign: 'center' }} // Adjusted iconStyle
+                        iconStyle={{ background: '#000', color: '#fff', textAlign: 'center' }} // Adjusted iconStyle
                         icon={experience.icon }
+                        contentStyle={{ background: 'transparent', color: '#fff' }} // Adjusted contentStyle
                     >
                         <Card
                         className='shadow-lg hover:shadow-xl'

@@ -11,7 +11,7 @@ export default function AppLayout({ children }: Readonly<{
   return (
     <>
       <SiteHeader />
-      <main className="flex-1">{children}</main>
+      <main className="w-full bg-gradient-to-br from-blue-50 via-blue-400 to-cyan-200 dark:from-gray-800 dark:via-gray-900 dark:to-black">{children}</main>
       <SiteFooter />
     </>
   )
