@@ -44,7 +44,7 @@ export function ContactForm() {
       >
         Contact Me
       </motion.h2>
-      <Form {...form}>
+      {/* <Form {...form}>
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
           
           <FormField
@@ -82,7 +82,7 @@ export function ContactForm() {
             Submit
           </Button>
         </form>
-      </Form>
+      </Form> */}
     </section>
   );
 }
