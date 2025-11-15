@@ -7,7 +7,7 @@ export default function AppLayout({ children }: Readonly<{
   return (
     <>
       <SiteHeader />
-      <main className="w-full bg-gradient-to-br from-blue-50 via-white to-cyan-50 dark:from-gray-900 dark:via-gray-800 dark:to-black min-h-screen">
+      <main className="w-full bg-gradient-to-br from-blue-50 via-white to-cyan-50 dark:from-black dark:via-slate-950 dark:to-black min-h-screen">
         {children}
       </main>
       <SiteFooter />
