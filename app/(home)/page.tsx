@@ -6,11 +6,33 @@ import { About } from "./ui/about";
 import { ContactForm } from "./ui/contact-me";
 import { Experience } from "./ui/experience";
 import { Projects } from "./ui/projects";
+import { Articles } from "./ui/articles";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { ArrowDownIcon } from "@radix-ui/react-icons";
+import { useState, useEffect } from "react";
 
 export default function Home() {
+  const quotes = [
+    "Code is like humor. When you have to explain it, it's bad. – Cory House",
+    "First, solve the problem. Then, write the code. – John Johnson",
+    "Experience is the name everyone gives to their mistakes. – Oscar Wilde",
+    "In order to be irreplaceable, one must always be different. – Coco Chanel",
+    "Java is to JavaScript what car is to Carpet. – Chris Heilmann",
+    "The best error message is the one that never shows up. – Thomas Fuchs",
+    "Debugging is twice as hard as writing the code. – Brian Kernighan",
+    "Talk is cheap. Show me the code. – Linus Torvalds"
+  ];
+
+  const [currentQuote, setCurrentQuote] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentQuote((prev) => (prev + 1) % quotes.length);
+    }, 10000);
+    return () => clearInterval(interval);
+  }, [quotes.length]);
+
   return (
     <main className="flex min-h-screen flex-col">
       {/* Hero Section */}
@@ -41,6 +63,17 @@ export default function Home() {
           >
             Full-stack developer with a passion for building functional, beautiful websites and applications that make a difference.
           </motion.p>
+          
+          <motion.div
+            key={currentQuote}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.5 }}
+            className="text-sm md:text-base text-muted-foreground/80 italic max-w-3xl mx-auto"
+          >
+            "{quotes[currentQuote]}"
+          </motion.div>
           
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
@@ -78,6 +111,7 @@ export default function Home() {
         <Services />
         <Skills />
         <Projects />
+        <Articles />
         <Experience />
         <ContactForm />
       </div>
