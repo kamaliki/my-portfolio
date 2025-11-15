@@ -19,20 +19,20 @@ function parseRSSFeed(xmlText: string) {
   const articles: any[] = [];
   
   // Simple regex-based XML parsing for RSS items
-  const itemRegex = /<item>(.*?)<\/item>/gs;
-  const titleRegex = /<title><!\[CDATA\[(.*?)\]\]><\/title>/s;
-  const linkRegex = /<link>(.*?)<\/link>/s;
-  const pubDateRegex = /<pubDate>(.*?)<\/pubDate>/s;
-  const descriptionRegex = /<description><!\[CDATA\[(.*?)\]\]><\/description>/s;
+  const itemRegex = /<item>[\s\S]*?<\/item>/g;
+  const titleRegex = /<title><!\[CDATA\[(.*?)\]\]><\/title>/;
+  const linkRegex = /<link>(.*?)<\/link>/;
+  const pubDateRegex = /<pubDate>(.*?)<\/pubDate>/;
+  const descriptionRegex = /<description><!\[CDATA\[(.*?)\]\]><\/description>/;
   
-  let match;
-  while ((match = itemRegex.exec(xmlText)) !== null) {
-    const itemContent = match[1];
+  const items = xmlText.match(itemRegex) || [];
+  
+  for (const item of items) {
     
-    const titleMatch = titleRegex.exec(itemContent);
-    const linkMatch = linkRegex.exec(itemContent);
-    const pubDateMatch = pubDateRegex.exec(itemContent);
-    const descriptionMatch = descriptionRegex.exec(itemContent);
+    const titleMatch = titleRegex.exec(item);
+    const linkMatch = linkRegex.exec(item);
+    const pubDateMatch = pubDateRegex.exec(item);
+    const descriptionMatch = descriptionRegex.exec(item);
     
     if (titleMatch && linkMatch && pubDateMatch) {
       articles.push({

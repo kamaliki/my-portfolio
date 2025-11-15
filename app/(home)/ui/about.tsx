@@ -45,37 +45,37 @@ export function About() {
                     <div className="text-sm font-medium">Marathon Runner</div>
                     <div className="text-xs text-muted-foreground">2x Standard Chartered</div>
                   </div>
-                  <div className="text-center p-4 rounded-lg bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-950 dark:to-emerald-950">
+                  <div className="text-center p-4 rounded-lg bg-gradient-to-br from-blue-100 to-cyan-100 dark:from-blue-900 dark:to-cyan-900">
                     <div className="text-2xl mb-2">👨‍🏫</div>
                     <div className="text-sm font-medium">Code Mentor</div>
                     <div className="text-xs text-muted-foreground">Unity Home Volunteer</div>
                   </div>
-                  <div className="text-center p-4 rounded-lg bg-gradient-to-br from-orange-50 to-red-50 dark:from-orange-950 dark:to-red-950">
+                  <div className="text-center p-4 rounded-lg bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-950 dark:to-blue-900">
                     <div className="text-2xl mb-2">⚽</div>
                     <div className="text-sm font-medium">Football Player</div>
                     <div className="text-xs text-muted-foreground">Weekend Warrior</div>
                   </div>
-                  <div className="text-center p-4 rounded-lg bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-950 dark:to-pink-950">
+                  <div className="text-center p-4 rounded-lg bg-gradient-to-br from-cyan-50 to-blue-100 dark:from-cyan-950 dark:to-blue-900">
                     <div className="text-2xl mb-2">💡</div>
                     <div className="text-sm font-medium">Hackathon Enthusiast</div>
                     <div className="text-xs text-muted-foreground">Devpost Regular</div>
                   </div>
-                  <div className="text-center p-4 rounded-lg bg-gradient-to-br from-teal-50 to-blue-50 dark:from-teal-950 dark:to-blue-950">
+                  <div className="text-center p-4 rounded-lg bg-gradient-to-br from-blue-100 to-blue-200 dark:from-blue-900 dark:to-blue-800">
                     <div className="text-2xl mb-2">🥾</div>
                     <div className="text-sm font-medium">Hiking Explorer</div>
                     <div className="text-xs text-muted-foreground">Trail Conqueror</div>
                   </div>
-                  <div className="text-center p-4 rounded-lg bg-gradient-to-br from-indigo-50 to-purple-50 dark:from-indigo-950 dark:to-purple-950">
+                  <div className="text-center p-4 rounded-lg bg-gradient-to-br from-cyan-100 to-blue-50 dark:from-cyan-900 dark:to-blue-950">
                     <div className="text-2xl mb-2">🎯</div>
                     <div className="text-sm font-medium">Tech Networker</div>
                     <div className="text-xs text-muted-foreground">Event Regular</div>
                   </div>
-                  <div className="text-center p-4 rounded-lg bg-gradient-to-br from-rose-50 to-pink-50 dark:from-rose-950 dark:to-pink-950">
+                  <div className="text-center p-4 rounded-lg bg-gradient-to-br from-blue-200 to-cyan-100 dark:from-blue-800 dark:to-cyan-900">
                     <div className="text-2xl mb-2">🃏</div>
                     <div className="text-sm font-medium">Card Strategist</div>
                     <div className="text-xs text-muted-foreground">Game Night Pro</div>
                   </div>
-                  <div className="text-center p-4 rounded-lg bg-gradient-to-br from-amber-50 to-orange-50 dark:from-amber-950 dark:to-orange-950">
+                  <div className="text-center p-4 rounded-lg bg-gradient-to-br from-cyan-50 to-cyan-100 dark:from-cyan-950 dark:to-cyan-900">
                     <div className="text-2xl mb-2">🚀</div>
                     <div className="text-sm font-medium">Innovation Driver</div>
                     <div className="text-xs text-muted-foreground">Always Building</div>
