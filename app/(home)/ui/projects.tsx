@@ -1,6 +1,5 @@
 "use client";
 
-import { useRef } from "react";
 import { projectsConfig } from "@/config/project";
 import {
   Card,
@@ -8,103 +7,144 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-  CardDescription
 } from "@/components/ui/card";
 import Image from "next/image";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
+import { ExternalLinkIcon, ChevronLeftIcon, ChevronRightIcon } from "@radix-ui/react-icons";
+import { useState, useEffect } from "react";
 
-export function Projects() {
-  const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["0 1", "1.33 1"],
-  });
-  const scaleProgess = useTransform(scrollYProgress, [0, 1], [0.8, 1]);
-  const opacityProgess = useTransform(scrollYProgress, [0, 1], [0.6, 1]);
+function ImageCarousel({ images, title }: { images: any[], title: string }) {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    if (images.length <= 1) return;
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % images.length);
+    }, 8000);
+    return () => clearInterval(interval);
+  }, [images.length]);
+
+  if (!images.length) return null;
+
+  const nextImage = () => setCurrentIndex((prev) => (prev + 1) % images.length);
+  const prevImage = () => setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
 
   return (
-    <section id="projects" className="scroll-mt-28 mb-28">
-      <motion.h2 initial={{ opacity: 0 }} animate={{ opacity: 1 }} 
-      className="text-center mb-8"
-      >
-        Projects
-      </motion.h2>
-      <div className="">
-        {projectsConfig.projects.map((project, index) => (
-          <motion.div
-            ref = {ref}
-            key={index}
-            style={{ scale: scaleProgess, opacity: opacityProgess }}
+    <div className="relative h-48 overflow-hidden group">
+      <Image
+        src={images[currentIndex]}
+        alt={title}
+        fill
+        className="object-cover group-hover:scale-105 transition-all duration-500 ease-in-out"
+      />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+      
+      {images.length > 1 && (
+        <>
+          <button
+            onClick={prevImage}
+            className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
           >
-            <Card className=" max-w-[42rem] border rounded-lg overflow-hidden sm:pr-8 relative sm:h-[25rem] transition sm:group-even:pl-8 dark:text-white dark:bg-white/10 shadow-lg hover:shadow-xl">
-              
-              <CardHeader>
-                <CardTitle>{project.title}</CardTitle>
-              </CardHeader>
-              
-              <CardContent>
-               
-                {project.description && 
-                <p className="text-sm p-2 m-2">
-                  {project.description}
-                </p>}
-                <ul className="flex flex-wrap mt-4 gap-2 sm:mt-auto">
-                  {project.skills.map((skill, index) => (
-                    <li
-                    className="bg-black/[0.7] px-3 py-1 text-[0.7rem] uppercase tracking-wider text-white rounded-full dark:text-white/70"
-                    key={index}
-                  >
-                    {skill}
-                  </li>
-                    
-                  ))}
-                </ul>
-              </CardContent>
-              
-               <CardDescription>
-                {project.link && (
-                  <Button
-                  className="m-6 text-xs sm:mt-auto rounded-2xl"  
-                  >
-                    <a href={project.link
-                    } target="_blank" rel="noreferrer">
-                      View Project
-                    </a>
-                  </Button>
-                )}
-              </CardDescription>
-              {/* <div className="relative h-[15rem] sm:h-full">
-                <Image
-                  src={project.image}
-                  alt={project.title}
-                  layout="fill"
-                  objectFit="cover"
-                />
-              </div> */}
-              <CardFooter className="relative h-[15rem] sm:h-full">
-                 <Image
-                  src={project.image}
-                  alt="Project I worked on"
-                  quality={95}
-                  className="absolute sm:block top-4 -right-40 w-[34.25rem] rounded-t-lg shadow-2xl
-                    transition 
-                    group-hover:scale-[1.04]
-                    group-hover:-translate-x-3
-                    group-hover:translate-y-3
-                    group-hover:-rotate-2
+            <ChevronLeftIcon className="w-4 h-4" />
+          </button>
+          <button
+            onClick={nextImage}
+            className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
+          >
+            <ChevronRightIcon className="w-4 h-4" />
+          </button>
+          <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1">
+            {images.map((_, idx) => (
+              <button
+                key={idx}
+                onClick={() => setCurrentIndex(idx)}
+                className={`w-2 h-2 rounded-full transition-colors ${
+                  idx === currentIndex ? 'bg-white' : 'bg-white/50'
+                }`}
+              />
+            ))}
+          </div>
+        </>
+      )}
+    </div>
+  );
+}
 
-                    group-even:group-hover:translate-x-3
-                    group-even:group-hover:translate-y-3
-                    group-even:group-hover:rotate-2
+export function Projects() {
+  return (
+    <section id="projects" className="py-24 px-4 bg-muted/30">
+      <div className="max-w-6xl mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="text-center mb-16"
+        >
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">Projects</h2>
+          <div className="w-20 h-1 bg-gradient-to-r from-blue-600 to-cyan-600 mx-auto rounded-full mb-4"></div>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            A showcase of my recent work and personal projects
+          </p>
+        </motion.div>
 
-                    group-even:right-[initial] group-even:-left-40"
-                /> 
-              </CardFooter>
-             
-            </Card>
-          </motion.div>
-        ))}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          {projectsConfig.projects.map((project, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+              viewport={{ once: true }}
+              whileHover={{ y: -5 }}
+              className="group"
+            >
+              <Card className="h-full border-0 shadow-lg hover:shadow-xl transition-all duration-300 bg-white/80 dark:bg-black/80 backdrop-blur-sm overflow-hidden">
+                <ImageCarousel images={project.images || []} title={project.title} />
+                
+                <CardHeader>
+                  <CardTitle className="text-xl font-semibold">
+                    {project.title}
+                  </CardTitle>
+                </CardHeader>
+                
+                <CardContent className="flex-grow">
+                  {project.description && (
+                    <p className="text-muted-foreground mb-4 leading-relaxed">
+                      {project.description}
+                    </p>
+                  )}
+                  
+                  <div className="flex flex-wrap gap-2">
+                    {project.skills.map((skill, skillIndex) => (
+                      <span
+                        key={skillIndex}
+                        className="px-3 py-1 text-xs font-medium bg-gradient-to-r from-blue-100 to-cyan-100 dark:from-blue-900 dark:to-cyan-900 text-blue-800 dark:text-blue-200 rounded-full"
+                      >
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+                </CardContent>
+                
+                <CardFooter>
+                  {project.link && (
+                    <Button
+                      className="bg-gradient-to-r items-center from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white border-0"
+                      asChild
+                    >
+                      <a href={project.link} target="_blank" rel="noreferrer">
+                        View Project
+                        <ExternalLinkIcon className="ml-2 w-4 h-4" />
+                      </a>
+                    </Button>
+                  )}
+                </CardFooter>
+              </Card>
+            </motion.div>
+          ))}
+        </div>
       </div>
     </section>
   );

@@ -3,5 +3,5 @@ export interface Project {
     description?: string
     skills : string[]
     link?: string
-    image?: any
+    images?: any[]
 }
