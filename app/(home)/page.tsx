@@ -6,6 +6,7 @@ import { About } from "./ui/about";
 import { ContactForm } from "./ui/contact-me";
 import { Experience } from "./ui/experience";
 import { Projects } from "./ui/projects";
+import { Articles } from "./ui/articles";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { ArrowDownIcon } from "@radix-ui/react-icons";
@@ -78,6 +79,7 @@ export default function Home() {
         <Services />
         <Skills />
         <Projects />
+        <Articles />
         <Experience />
         <ContactForm />
       </div>

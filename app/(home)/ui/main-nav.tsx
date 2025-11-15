@@ -63,10 +63,21 @@ export function MainNav() {
             Projects
         </Link>
         <Link
+          href="/#articles"
+          className={cn(
+            "transition-colors hover:text-foreground/80",
+            pathname?.startsWith("/articles")
+              ? "text-foreground"
+              : "text-foreground/60"
+          )}
+        >
+            Articles
+        </Link>
+        <Link
           href="/#experience"
           className={cn(
             "transition-colors hover:text-foreground/80",
-            pathname?.startsWith("/contact")
+            pathname?.startsWith("/experience")
               ? "text-foreground"
               : "text-foreground/60"
           )}
